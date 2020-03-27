@@ -6,3 +6,6 @@ Source code for the paper:
 
 Tran LM, Mocle AJ, Ramsaran AI, Jacob AD, Frankland PW, Josselyn SA. (2020) In preparation.
 
+Note: User guide in progress, many aspects of this code repository may change in the process of journal submission/review.
+
+
