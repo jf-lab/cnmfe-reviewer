@@ -9,7 +9,8 @@ Tran LM, Mocle AJ, Ramsaran AI, Jacob AD, Frankland PW, Josselyn SA. (2020) In p
 ## Installation
 
 ### Software requirements
-1. Python 3.5+ (ideally with Anaconda) 
+Note: The main AutoML tool used, Autosklearn, works best in Linux environments.
+1. Python 3.5+ (ideally with Anaconda)
 2. Clone or download this repository onto a local folder on your computer.
 3. Change to the directory where you downloaded `cnmfe-reviewer`.
     `cd /path/to/cnfme-reviewer`
@@ -22,7 +23,31 @@ conda create -n myenv_name python=3.6
 # when conda asks to proceed, type 'y'
 # this puts your environment in a default folder under the hood
 
-con 
+# activate the environment
+source activate myenv_name
+```
+5. While in the conda environment, follow the instructions to [install AutoSklearn](https://automl.github.io/auto-sklearn/master/installation.html#system-requirements).
+Namely:
+Make sure you have these installed:
+- C++ compiler (with C++11 supports) ([get gcc here](https://www.tutorialspoint.com/How-to-Install-Cplusplus-Compiler-on-Linux))
+- SWIG (version 3.0 or later) ([get SWIG here](http://www.swig.org/survey.html))
+
+```
+# install dependancies
+curl https://raw.githubusercontent.com/automl/auto-sklearn/master/requirements.txt | xargs -n 1 -L 1 pip install
+
+# (ON LINUX ONLY, skip on MacOS) get the correct compilers and swig
+conda install gxx_linux-64 gcc_linux-64 swig
+
+# install auto-sklearn
+pip install 'auto-sklearn==0.6.0'
+```
+
+6. Finally, install `cnfmereview`:
+```
+# install cnmfereview (you should be in the cnmfe-reviewer directory)
+pip install ./
+```
 
 
 

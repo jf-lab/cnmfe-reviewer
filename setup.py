@@ -7,8 +7,5 @@ setup(name="cnmfereview",
       license="MIT",
       packages=['cnmfereview'],
       python_requires='>=3',
-      install_requires=[
-          'auto-sklearn>=0.6.0',
-          'scikit-learn>0.21.0,<0.22.0'
-          ],
+      install_requires=[],
       zip_safe=False)
