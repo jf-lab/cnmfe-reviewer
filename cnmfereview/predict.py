@@ -1,6 +1,7 @@
 import numpy as np
 from scipy.io import loadmat, savemat
-from .config import *
+import config as cfg
+
 
 def make_predictions(fname, model):
     """
@@ -20,9 +21,9 @@ def make_predictions(fname, model):
     data = loadmat(fname)
     # spatial downsample factor
     ds = data['ssub']
-    max_trace = config['max_trace_len']
-    xpix = config['image_shape']['x']
-    ypix = config['image_shape']['y']
+    max_trace = cfg.max_trace_len
+    xpix = cfg.image_shape['x']
+    ypix = cfg.image_shape['y']
 
     trace = data['C_raw'][:, max_trace]]
 

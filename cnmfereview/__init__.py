@@ -1,3 +1,3 @@
 from .utils import *
-import .predict
-from .config import *
+import predict
+#import config as cfg
