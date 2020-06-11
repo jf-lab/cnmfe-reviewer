@@ -1,10 +1,10 @@
 # experiment identifier
 # up to you how you want to format, no spaces or special chars
-exp_id = "20200202-exp-name-example"
+exp_id = "name of expt"
 
 data_paths = {
     # modify these as necessary for your data
-    "data_directory": "./data/",
+    "data_directory": "path/to/your/data",
     "spatial": "data_A.npy",
     "trace": "data_Craw.npy",
     "targets": "scores.npy"
@@ -18,8 +18,8 @@ img_shape = {
 
 # the xy dimensions in pixels of your cropped images
 # should be about 2x larger than the largest ROI
-img_crop_size = {"x": 40,
-                 "y": 40}
+img_crop_size = {"x": 50,
+                 "y": 50}
 
 
 # the number of frames to extract from each trace

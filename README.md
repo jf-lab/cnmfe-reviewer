@@ -33,7 +33,11 @@ Make sure you have these installed:
 - C++ compiler (with C++11 supports) ([get gcc here](https://www.tutorialspoint.com/How-to-Install-Cplusplus-Compiler-on-Linux))
 - SWIG (version 3.0 or later) ([get SWIG here](http://www.swig.org/survey.html))
 
+<<<<<<< HEAD
 ```bash
+=======
+```python
+>>>>>>> 32bbaf99601c0aaefdd492e21265c6359f2b9914
 # install dependancies
 curl https://raw.githubusercontent.com/automl/auto-sklearn/master/requirements.txt | xargs -n 1 -L 1 pip install
 
@@ -46,7 +50,11 @@ pip install 'auto-sklearn==0.6.0'
 
 6. Finally, install `cnfmereview`:
 
+<<<<<<< HEAD
 ```bash
+=======
+```python
+>>>>>>> 32bbaf99601c0aaefdd492e21265c6359f2b9914
 # install cnmfereview (you should be in the cnmfe-reviewer directory)
 pip install ./
 ```
