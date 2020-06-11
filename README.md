@@ -33,7 +33,7 @@ Make sure you have these installed:
 - C++ compiler (with C++11 supports) ([get gcc here](https://www.tutorialspoint.com/How-to-Install-Cplusplus-Compiler-on-Linux))
 - SWIG (version 3.0 or later) ([get SWIG here](http://www.swig.org/survey.html))
 
-```python
+```bash
 # install dependancies
 curl https://raw.githubusercontent.com/automl/auto-sklearn/master/requirements.txt | xargs -n 1 -L 1 pip install
 
@@ -46,10 +46,18 @@ pip install 'auto-sklearn==0.6.0'
 
 6. Finally, install `cnfmereview`:
 
-```python
+```bash
 # install cnmfereview (you should be in the cnmfe-reviewer directory)
 pip install ./
 ```
 
+7. To make the environment available in Jupyter Notebooks:
+```bash
+conda install ipykernel
+ipython kernel install --user --name=<any_name_for_kernel>
+```
 
-
+8. When you're done, you can deactivate the environment:
+```bash
+conda deactivate
+```
