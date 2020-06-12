@@ -407,49 +407,11 @@ def trace_window(traces, size=500, threshold=0.75):
             on the first occurence of activity passing the
             threshold.
     """
-<<<<<<< HEAD
     trace_min = traces.min(axis=1)
     trace_max = traces.max(axis=1)
     trace_mid = ((
         traces.max(axis=1) - traces.min(axis=1)
         )*threshold + trace_min)
-=======
-    # check if processes files exist, if not, load and preprocess the raw data
-    preprocess = not np.all([os.path.exists(f"{directory}/data_A_cropped.npy"),
-                  os.path.exists(f"{directory}/data_traces_comb.npy")])
-    
-    if preprocess:
-        # spatial footprints + crop
-        spatial = np.load(f"{directory}/data_A.npy").astype(dtype)
-        spatial = crop_footprint(spatial, crop_dim=[80,80])
-        
-        # traces
-        trace_raw = np.load(f"{directory}/data_Craw.npy", 
-                            allow_pickle=True).astype(dtype)
-        trace_d = np.load(f"{directory}/data_C.npy",
-                          allow_pickle=True).astype(dtype)
-        
-        # normalize trace data
-        traces = [normalize_traces(trace, pad=True, longest=500) 
-                  for trace in [trace_raw, trace_d]]
-        # stack the traces
-        traces = np.array([np.vstack([i,traces[1][ix]]).T 
-                             for ix,i in enumerate(traces[0])])
-        
-        # save processed files
-        np.save(f'{directory}/data_A_cropped.npy', spatial)
-        np.save(f'{directory}/data_traces_comb.npy',traces)
-                           
-    else:
-        # load spatial and trace data
-        spatial = np.load(f'{directory}/data_A_cropped.npy').astype(dtype)
-        traces = np.load(f'{directory}/data_traces_comb.npy').astype(dtype)
-    
-    # load the labels/target data
-    targets = np.load(f'{directory}/scores.npy').astype(dtype)
-    
-    return spatial, traces, targets
->>>>>>> 32bbaf99601c0aaefdd492e21265c6359f2b9914
 
     # initialize empty array
     new_traces = np.zeros((traces.shape[0], size))
@@ -461,11 +423,9 @@ def trace_window(traces, size=500, threshold=0.75):
             start_idx = traces.shape[1] - size
         new_traces[ix] = traces[ix, start_idx:start_idx+size]
 
-<<<<<<< HEAD
     return new_traces
 
-
-
+                  
 def normalize_traces(traces):
     """
     Normalize and scale calcium trace data so all
@@ -527,9 +487,6 @@ def setup_1p_data(
     Returns:
         x_train, x_test, y_train, y_test
     """
-=======
-def setup_remote_job(directory, feature='combined', split=0.2):
->>>>>>> 32bbaf99601c0aaefdd492e21265c6359f2b9914
     # set random seed (sklearn)
     seed = 0
 
@@ -626,7 +583,6 @@ def plot_rois(
 
     cell_no = 0
     
-<<<<<<< HEAD
     for j in range(rows):
         for i in range(cols):
             # if reached the end of cells, stop
@@ -662,44 +618,6 @@ def classification_analysis(
     """
     Create four arrays of the indices of false positives,
     false negatives, true positives and true negatives
-=======
-
-def preprocess_2p_dataset(spatial, traces, targets, methods=None, 
-                             feature='combined', split=0.2):  
-    seed = 0
-    px = spatial.shape[1]
-    spatial = np.reshape(spatial, (len(spatial), px*px))
-    dt = {'spatial': spatial,
-            'trace': traces,
-            'combined': np.concatenate((spatial, traces), axis=1)}
-
-    data = dt[feature]
-
-    # train/test split
-    from sklearn.model_selection import StratifiedShuffleSplit 
-
-    sss = StratifiedShuffleSplit(n_splits=1, 
-                                 test_size=split, 
-                                random_state=seed)
-    
-    for train_index, test_index in sss.split(data, targets):
-        x_train, x_test = data[train_index], data[test_index]
-        y_train, y_test = targets[train_index], targets[test_index]
-        print("Training and test data loaded")
-        if methods is not None:
-            m_train, m_test = methods[train_index], methods[test_index]
-            print("Target descriptions loaded \
-                   (ground truth dataset only)")
-            return x_train, x_test, y_train, y_test, m_train, m_test
-
-        return x_train, x_test, y_train, y_test
-
-
-def classification(y_true: np.ndarray, y_pred: np.ndarray):
-    """
-    Create four arrays of the indices of false positives, 
-    false negatives, true positives and true negatives 
->>>>>>> 32bbaf99601c0aaefdd492e21265c6359f2b9914
     from predicted (y_pred) and target (y_true) classes.
 
     Args:
@@ -713,11 +631,8 @@ def classification(y_true: np.ndarray, y_pred: np.ndarray):
     def false_negative(y_true, y_pred):
         idx = np.argwhere(y_true > y_pred)
         return idx
-<<<<<<< HEAD
-
-=======
-    
->>>>>>> 32bbaf99601c0aaefdd492e21265c6359f2b9914
+                  
+                  
     def true_positive(y_true, y_pred):
         idx = np.argwhere((y_pred == y_true) & (y_true == 1))
         return idx
@@ -725,16 +640,11 @@ def classification(y_true: np.ndarray, y_pred: np.ndarray):
     def true_negative(y_true, y_pred):
         idx = np.argwhere((y_pred == y_true) & (y_true == 0))
         return idx
-<<<<<<< HEAD
-
-=======
-    
->>>>>>> 32bbaf99601c0aaefdd492e21265c6359f2b9914
+                  
     fp = false_positive(y_true, y_pred).ravel()
     fn = false_negative(y_true, y_pred).ravel()
     tp = true_positive(y_true, y_pred).ravel()
     tn = true_negative(y_true, y_pred).ravel()
-<<<<<<< HEAD
 
     return (fp, fn, tp, tn)
 
@@ -742,15 +652,6 @@ def classification(y_true: np.ndarray, y_pred: np.ndarray):
 def retrieve_sp_tr(data,
                    x: int,
                    y: int):
-=======
-    
-    return fp, fn, tp, tn
-
-
-def retrieve_sp_tr(data,
-                   x=cfg.img_crop_size['x'],
-                   y=cfg.img_crop_size['y']):
->>>>>>> 32bbaf99601c0aaefdd492e21265c6359f2b9914
     """
     Retreives the original spatial footprint and trace data
     from flattened and concatenated array used for classification
@@ -759,16 +660,8 @@ def retrieve_sp_tr(data,
         data (np.ndarray): NxM array where N is the number of cells,
             and M is the length of the flattened, concatenated
             spatial and trace data.
-<<<<<<< HEAD
         x (int, optional): Original cropped image x dimension.
         y (int, optional): Original cropped image y dimension.
-
-=======
-        x (int, optional): Original cropped image x dimension. 
-            Defaults to cfg.img_shape['x]
-        y (int, optional): Original cropped image y dimension. 
-            Defaults to cfg.img_shape['y']
->>>>>>> 32bbaf99601c0aaefdd492e21265c6359f2b9914
 
     Returns:
         spatial: original spatial images
@@ -778,11 +671,7 @@ def retrieve_sp_tr(data,
 
     spatial = data[:, :split]
     spatial = spatial.reshape((len(spatial), x, y))
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> 32bbaf99601c0aaefdd492e21265c6359f2b9914
     tr = data[:, split:]
 
     return spatial, tr
