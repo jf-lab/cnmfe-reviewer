@@ -10,7 +10,7 @@ Tran LM, Mocle AJ, Ramsaran AI, Jacob AD, Frankland PW, Josselyn SA. (2020) In p
 
 ### Download example dataset
 
-Most of necessary files are included in the repo, however the processed spatial footprints and traces can be [downloaded from here](https://drive.google.com/drive/folders/1pGGwUzSI7Hm6gBrilP1SIm0C5bnX7MSO?usp=sharing) (due to GitHub file size limits).
+Most of necessary files are included in the repo, however the processed spatial footprints and traces in the ground truth dataset which can be used in the tutorial can be [downloaded from here](https://drive.google.com/drive/folders/1pGGwUzSI7Hm6gBrilP1SIm0C5bnX7MSO?usp=sharing) (due to GitHub file size limits). Place them in the cnmfe-reviewer/data folder.
 
 ### Software requirements
 Note: The main AutoML tool used, Autosklearn, works best in Linux environments.
