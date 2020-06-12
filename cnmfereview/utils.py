@@ -222,11 +222,8 @@ class Dataset(object):
             axis=1
             )
 
-        np.save(
-            self.DATADIR / (self.exp_id + "combined_data.npy"),
-            self.combined,
-            allow_pickle=True
-        )
+        print("Successfully loaded data.")
+        
 
     def split_training_test_data(self, test_split: float=0.2,
                                 seed: int=0):
