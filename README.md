@@ -8,6 +8,10 @@ Tran LM, Mocle AJ, Ramsaran AI, Jacob AD, Frankland PW, Josselyn SA. (2020) In p
 
 ## Installation
 
+### Download example dataset
+
+Most of necessary files are included in the repo, however the processed spatial footprints and traces can be [downloaded from here](https://drive.google.com/drive/folders/1pGGwUzSI7Hm6gBrilP1SIm0C5bnX7MSO?usp=sharing) (due to GitHub file size limits).
+
 ### Software requirements
 Note: The main AutoML tool used, Autosklearn, works best in Linux environments.
 1. Python 3.5+ (ideally with Anaconda)
