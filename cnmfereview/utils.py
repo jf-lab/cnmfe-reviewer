@@ -177,8 +177,8 @@ class Dataset(object):
             print(f"Spatial data preprocessed, \
                 saved in {self.DATADIR / (self.exp_id + 'A_cropped.npy')}")
         else:
-            self.spatial = np.load(self.DATADIR / (self.exp_id + 'A_cropped.npy')
-                                   ).astype(self.dtype)
+            self.spatial = np.load(self.DATADIR / (self.exp_id + 'A_cropped.npy'),
+                                   allow_pickle=True).astype(self.dtype)
             print("No preprocessing on spatial data")
             print(f"File {self.DATADIR / (self.exp_id + 'A_cropped.npy')} already exists and has been loaded instead.")
 
@@ -194,8 +194,8 @@ class Dataset(object):
             print(f"Trace data preprocessed, saved in \
             {self.DATADIR /( self.exp_id + 'Craw_normalized.npy')}")
         else:
-            self.trace = np.load(self.DATADIR / (self.exp_id + 'Craw_normalized.npy')
-                             )
+            self.trace = np.load(self.DATADIR / (self.exp_id + 'Craw_normalized.npy'),
+                             allow_pickle=True)
             print(f"No preprocessing on trace data. \
                   {self.DATADIR / (self.exp_id + 'Craw_normalized.npy')} already \
                   exists and has been loaded instead.")
