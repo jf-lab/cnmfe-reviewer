@@ -3,14 +3,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 *.pyc
-*.npy
-fart-data/
+
 *.py.swp
 
 # tpot related
-notebooks/
 models/
-results/
+
 # C extensions
 *.so
 
@@ -97,5 +95,5 @@ ENV/
 .ropeproject
 
 # Project Specific
-data/
+
 
