@@ -7,5 +7,5 @@ setup(name="cnmfereview",
       license="MIT",
       packages=['cnmfereview'],
       python_requires='>=3',
-      install_requires=[],
+      install_requires=['matplotlib'],
       zip_safe=False)
