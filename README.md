@@ -6,7 +6,9 @@ Source code for the paper:
 
 Tran LM, Mocle AJ, Ramsaran AI, Jacob AD, Frankland PW, Josselyn SA. (2020) In preparation.
 
-## Installation
+## Getting Started
+
+The [tutorial jupyter notebook](https://github.com/jf-lab/cnmfe-reviewer/blob/master/notebooks/Tutorial.ipynb) in `notebooks/` has information about the tool, and how to how to use it for your own data after you've installed everything. You can make a copy of the notebook and the config.py file and configure the project for your own data. 
 
 ### Download example dataset
 
