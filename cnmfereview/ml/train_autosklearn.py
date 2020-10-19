@@ -15,8 +15,7 @@ from sklearn.externals import joblib
 import argparse
 
 cv_folds = 5 # CV is by default stratifiedKFold for auto-sklearn
-random_state = 23 # 162000s is 45 hours # how long to run auto-ml in seconds (default = 3600)
-#max_time_secs = 162000 #86400 # how many seconds for a single call to a model (fitting/eval) (default = 360)
+random_state = 0
 max_eval_time_secs = 10800 
 population_size = 100
 
@@ -60,7 +59,7 @@ if __name__ == '__main__':
     feats = args.feats
     print(f'feats are: {args.feats}.csv')
 
-    max_time_secs = (max_days * 24 * 60 * 60) - 3600 # subtract an  hour to make sure that final wrap up of script can still finish with given time alloted on SCC
+    max_time_secs = (max_days * 24 * 60 * 60) 
     max_time_secs = int(max_time_secs)
 
     START_TIME = datetime.now().isoformat(timespec='minutes')
@@ -91,21 +90,17 @@ if __name__ == '__main__':
         n_jobs=16,
         ml_memory_limit=10000,
         ensemble_memory_limit=5000,
-        tmp_folder= model_logs_path / f'autosklearn_{feats}_{START_TIME}', # folder to store configuration output and log files
-        output_folder = AUTOSKLEARN_TOPMODELS / f'autosklearn_out_{feats}_{START_TIME}', # folder to store predictions for optional test set
+        tmp_folder= model_logs_path / f'autosklearn_{feats}_{START_TIME}', 
+        output_folder = AUTOSKLEARN_TOPMODELS / f'autosklearn_out_{feats}_{START_TIME}',
         delete_tmp_folder_after_terminate=False,
         resampling_strategy=model_selection.RepeatedStratifiedKFold,
 	resampling_strategy_arguments={'folds': cv_folds, 'n_repeats': 5, 'random_state': random_state})
 
-    # fit() changes the data in place, but refit needs the original data. We
-    # therefore copy the data. In practice, one should reload the data
-    #score_function = autosklearn.metrics.f1
     score_function = f1beta
 
     automl.fit(X_train.copy(), y_train.copy(), metric=score_function)
-    # During fit(), models are fit on individual cross-validation folds. To use
-    # all available data, we call refit() which trains all models in the
-    # final ensemble on the whole dataset.
+
+    # fit on all folds data
     automl.refit(X_train.copy(), y_train.copy())
 
     print(automl.sprint_statistics())
