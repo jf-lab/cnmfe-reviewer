@@ -13,7 +13,6 @@ import argparse
 
 cv_folds = 10
 random_state = 23
-#max_time_mins = 45*60  # 45*60  # how long to run tpot
 max_eval_time_mins = 5  # how many minutes is a single pipeline allowed
 population_size = 100 
 
@@ -47,7 +46,7 @@ if __name__ == '__main__':
     n_jobs = 16
 
     max_time_in_days = args.time
-    max_time_mins = (max_time_in_days * 24 * 60) - 60 # subtract an hour to make sure that final wrap up of script can still finish with given time alloted on SCC
+    max_time_mins = (max_time_in_days * 24 * 60) - 60
     max_time_mins = int(max_time_mins)
 
     START_TIME = datetime.now().isoformat(timespec='minutes')
@@ -65,7 +64,7 @@ if __name__ == '__main__':
     # stratified K fold chooses same proportion of labels per fold
     kf = model_selection.RepeatedStratifiedKFold(n_splits=cv_folds, n_repeats=5, random_state=random_state)
 
-    config_dict = None  # 'TPOT light'
+    config_dict = None 
     tpot = TPOTClassifier(population_size=population_size, verbosity=2, scoring='f1',
                           random_state=random_state, cv=kf, n_jobs=n_jobs,
                           max_time_mins=max_time_mins, max_eval_time_mins=max_eval_time_mins,
